@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(
   cors({
-    origin: "https://encuestas-front-t25n.onrender.com",
+    origin: "https://encuestapp-backend.onrender.com",
     credentials: true,
   })
 );
