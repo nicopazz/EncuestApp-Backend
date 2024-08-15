@@ -22,13 +22,12 @@ export const signup = async (req, res) => {
       username,
       email,
       password: hashedPassword,
-      roles,
+      roles: "Moderador",
     });
 
     // Guardar el usuario en la base de datos
     const userSaved = await newUser.save();
 
-    await User.populate(userSaved, { path: "roles" });
 
     // Crear un token de acceso
     const token = await createAccessToken({ id: userSaved._id });
@@ -71,11 +70,7 @@ export const signin = async (req, res) => {
     const token = await createAccessToken({ id: user._id });
 
     //* Guardar el token en una cookie
-    res.cookie("token", token, {
-      sameSite: "none",
-      secure: true,
-      maxAge: 24 * 60 * 60 * 1000, // 1 day
-    });
+    
 
     res.status(200).json({
       id: user._id,
@@ -85,6 +80,7 @@ export const signin = async (req, res) => {
       updatedAt: user.updatedAt,
       roles: user.roles,
       encuestasRealizadas: user.encuestasRealizadas,
+      token: token,
     });
   } catch (error) {
     console.error(error);

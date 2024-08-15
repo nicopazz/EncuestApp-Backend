@@ -11,7 +11,7 @@ import { isAuth } from "../middlewares/auth.middleware.js";
 
 const router = Router();
 
-router.get("/categorias", getCategorias);
+router.get("/categorias", isAuth, getCategorias);
 
 router.get("/categorias/:id", getCategoria);
 

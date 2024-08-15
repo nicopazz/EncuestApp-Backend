@@ -14,12 +14,14 @@ app.use(morgan("dev"));
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(
-  cors({
-    origin: "https://encuestapp-backend.onrender.com",
-    credentials: true,
-  })
-);
+const corsOptions = {
+  origin: '*',
+  optionsSuccessStatus: 200,
+  methods: 'GET, POST, PUT, DELETE',   
+  allowedHeaders: 'Content-Type, Authorization',
+}
+
+app.use(cors(corsOptions));
 
 app.use("/api", authRoutes);
 app.use("/api", encuestasRoutes);
