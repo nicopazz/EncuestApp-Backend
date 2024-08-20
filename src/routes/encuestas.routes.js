@@ -15,13 +15,13 @@ import { encuestaValidator } from "../validators/encuestas.validator.js";
 
 const router = Router();
 
-router.get("/encuestas", /* isAuth, */ getEncuestas);
+router.get("/encuestas",  isAuth,  getEncuestas);
 
-router.get("/encuestas/:id", /* isAuth, */ getEncuesta);
+router.get("/encuestas/:id",  isAuth,  getEncuesta);
 
 router.get(
   "/encuestas/categoria/:categoria",
-  /* isAuth, */ getEncuestasPorCategoria
+   isAuth,  getEncuestasPorCategoria
 );
 
 router.get(
